@@ -287,6 +287,14 @@ connectButton.addEventListener('click', () => {
     })
     source.onmessage = (data) => {
       const { pose3DLandmarks, pose2DLandmarks } = parse(data.data)
+      const keep = {
+        data: data.data,
+        pose3DLandmarks,
+        pose2DLandmarks
+      }
+      window.printData = () => {
+        console.log(keep)
+      }
       // console.debug(pose2DLandmarks, pose3DLandmarks)
       riggedPose = Kalidokit.Pose.solve(pose3DLandmarks, pose2DLandmarks, {
         runtime: "mediapipe",
