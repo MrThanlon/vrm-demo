@@ -26,7 +26,9 @@ jobs:
 
     # Run build
     - name: Build
-      run: npm run build -- --base=/vrm-demo --outDir=dist
+      run: |
+        npm run build -- --base=/vrm-demo --outDir=dist
+        cp -r models dist/
 
     # Deploy
     - name: Deploy to GitHub Pages
