@@ -264,14 +264,17 @@ let riggedPose = Kalidokit.Pose.solve(pose3DLandmarks, pose2DLandmarks, {
 
 let source
 const connectButton = document.getElementById('connect')
+const urlInput = document.getElementById('url')
+urlInput.value = localStorage.getItem('url') || ''
 connectButton.addEventListener('click', () => {
   if (source) {
     source.close()
     source = null
     connectButton.innerText = 'Connect'
   } else {
-    const url = document.getElementById('url').value
+    const url = urlInput.value
     console.log(url)
+    localStorage.setItem('url', url)
     source = new EventSource(url)
     source.addEventListener('open', () => {
       console.log('connected')
